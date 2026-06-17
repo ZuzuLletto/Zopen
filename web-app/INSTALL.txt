@@ -1,0 +1,139 @@
+================================================================================
+  ZOPEN - CASE OPENING SIMULATOR - INSTALLATION INSTRUCTIONS
+================================================================================
+
+STEP 1: NAVIGATE TO PROJECT
+----------------------------
+Open your terminal/command prompt and run:
+
+  cd c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app
+
+
+STEP 2: INSTALL DEPENDENCIES
+-----------------------------
+Run this command (this will take a few minutes):
+
+  npm install
+
+If you get a PowerShell error, try:
+
+  cmd /c "npm install"
+
+
+STEP 3: ADD YOUR IMAGES (IMPORTANT!)
+-------------------------------------
+Place your images in these folders:
+
+CASE IMAGES (3 files needed):
+  c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app\public\assets\cases\starter.png
+  c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app\public\assets\cases\premium.png
+  c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app\public\assets\cases\elite.png
+
+SKIN IMAGES (15 files needed):
+  c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app\public\assets\skins\skin1.png
+  c:\Users\Zuzu\Desktop\Projeler\caseopensim\web-app\public\assets\skins\skin2.png
+  ... through skin15.png
+
+Image requirements:
+  - PNG format (recommended)
+  - Square size (500x500px ideal)
+  - Under 500KB each
+
+
+STEP 4: RUN THE APPLICATION
+----------------------------
+Start the development server:
+
+  npm run dev
+
+If PowerShell blocks it:
+
+  cmd /c "npm run dev"
+
+
+STEP 5: OPEN IN BROWSER
+------------------------
+Open your web browser and go to:
+
+  http://localhost:3000
+
+You should see the ZOPEN homepage with your cases!
+
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+PROBLEM: "npm is not recognized"
+SOLUTION: Install Node.js from https://nodejs.org (version 18 or higher)
+
+PROBLEM: PowerShell script execution error
+SOLUTION: Run commands using: cmd /c "your-command-here"
+  Or change directory to cmd: cmd
+  Then run: npm install
+
+PROBLEM: Images not showing
+SOLUTION: 
+  1. Verify images are exactly in /public/assets/cases/ and /public/assets/skins/
+  2. Check file names match exactly (case-sensitive!)
+  3. Refresh browser with Ctrl+F5
+
+PROBLEM: Port 3000 already in use
+SOLUTION: The app will ask to use port 3001 automatically, or:
+  1. Close other apps using port 3000
+  2. Or use: npm run dev -- -p 3001
+
+PROBLEM: Build fails
+SOLUTION:
+  1. Delete node_modules folder
+  2. Delete .next folder
+  3. Run: npm install
+  4. Run: npm run dev
+
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. ✅ Test opening cases
+2. ✅ Test buying/selling in marketplace
+3. ✅ Test inventory management
+4. ✅ Customize colors in tailwind.config.ts
+5. ✅ Customize skins in data/skins.json
+6. ✅ Deploy to hosting platform
+
+
+================================================================================
+QUICK COMMANDS
+================================================================================
+
+Run development server:
+  npm run dev
+
+Build for production:
+  npm run build
+
+Start production server:
+  npm run start
+
+Reset user balance (in browser):
+  1. Press F12
+  2. Go to Application tab
+  3. Local Storage → localhost:3000
+  4. Delete "zopen-user-data"
+  5. Refresh page
+
+
+================================================================================
+SUPPORT FILES
+================================================================================
+
+📄 README.md          - Complete documentation
+📄 SETUP.md           - Detailed setup guide
+📄 QUICK-REFERENCE.md - Quick tips and commands
+📄 PROJECT-SUMMARY.md - Full project overview
+
+
+================================================================================
+ENJOY YOUR CASE OPENING SIMULATOR! 🎉
+================================================================================
