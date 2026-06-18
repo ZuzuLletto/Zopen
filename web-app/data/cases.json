@@ -4,19 +4,21 @@
     "name": "Starter Case",
     "imagePath": "/assets/cases/starter.png",
     "dropRates": {
-      "common": 70,
-      "uncommon": 20,
-      "rare": 9,
-      "epic": 0.9,
-      "legendary": 0.1
+      "white": 40,
+      "lightblue": 30,
+      "darkblue": 20,
+      "purple": 8,
+      "pink": 1.5,
+      "red": 0.4,
+      "gold": 0.1
     },
     "possibleDrops": [
-      "skin-5",
-      "skin-10",
       "skin-15",
+      "skin-10",
+      "skin-5",
+      "skin-14",
       "skin-4",
       "skin-9",
-      "skin-14",
       "skin-3",
       "skin-8",
       "skin-2",
@@ -28,18 +30,20 @@
     "name": "Premium Case",
     "imagePath": "/assets/cases/premium.png",
     "dropRates": {
-      "common": 60,
-      "uncommon": 25,
-      "rare": 12,
-      "epic": 2.5,
-      "legendary": 0.5
+      "white": 30,
+      "lightblue": 25,
+      "darkblue": 22,
+      "purple": 15,
+      "pink": 5,
+      "red": 2.5,
+      "gold": 0.5
     },
     "possibleDrops": [
-      "skin-5",
       "skin-10",
+      "skin-5",
+      "skin-14",
       "skin-4",
       "skin-9",
-      "skin-14",
       "skin-3",
       "skin-8",
       "skin-13",
@@ -55,11 +59,13 @@
     "name": "Elite Case",
     "imagePath": "/assets/cases/elite.png",
     "dropRates": {
-      "common": 50,
-      "uncommon": 30,
-      "rare": 15,
-      "epic": 4,
-      "legendary": 1
+      "white": 20,
+      "lightblue": 20,
+      "darkblue": 20,
+      "purple": 20,
+      "pink": 10,
+      "red": 8,
+      "gold": 2
     },
     "possibleDrops": [
       "skin-10",

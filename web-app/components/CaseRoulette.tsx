@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Skin } from '@/types';
-import { rarityBorderColors, rarityColors } from '@/utils/rarity';
+import { rarityBorderColors, rarityColors, rarityHexColors, rarityGlowIntensity, getRarityLabel } from '@/utils/rarity';
 
 interface CaseRouletteProps {
   items: Skin[];
@@ -20,31 +20,76 @@ export default function CaseRoulette({ items, onComplete, winningItem }: CaseRou
     const spin = async () => {
       setIsSpinning(true);
       
-      // Calculate the position to land on the winning item
-      const itemWidth = 180; // width + margin
-      const winningIndex = Math.floor(items.length * 0.75);
-      const centerOffset = containerRef.current ? containerRef.current.offsetWidth / 2 - itemWidth / 2 : 0;
-      const targetPosition = -(winningIndex * itemWidth - centerOffset);
+      // Winning item'ın items array'inde KESIN index'ini bul
+      // generateRouletteItems tam olarak 75% pozisyonuna koyuyor
+      const expectedWinningIndex = Math.floor(items.length * 0.75);
+      
+      // Önce beklenen index'e bak
+      let actualWinningIndex = expectedWinningIndex;
+      
+      // Eğer beklenen yerde yoksa çevresinde ara (±3 index)
+      if (items[expectedWinningIndex]?.id !== winningItem.id) {
+        let found = false;
+        for (let offset = 1; offset <= 3; offset++) {
+          if (items[expectedWinningIndex + offset]?.id === winningItem.id) {
+            actualWinningIndex = expectedWinningIndex + offset;
+            found = true;
+            break;
+          }
+          if (items[expectedWinningIndex - offset]?.id === winningItem.id) {
+            actualWinningIndex = expectedWinningIndex - offset;
+            found = true;
+            break;
+          }
+        }
+        
+        // Hala bulamadıysa tüm array'de ara
+        if (!found) {
+          const foundIndex = items.findIndex(item => item.id === winningItem.id);
+          if (foundIndex !== -1) {
+            actualWinningIndex = foundIndex;
+          }
+        }
+      }
+      
+      // TAM HESAPLAMA:
+      // Her item: width=160px (w-40) + margin-right=16px (space-x-4) = 176px
+      const ITEM_WIDTH = 176;
+      
+      // Container'ın genişliği
+      const containerWidth = containerRef.current?.offsetWidth || 1200;
+      
+      // Container'ın merkezi
+      const centerOffset = containerWidth / 2;
+      
+      // Winning item'ın sol kenarının pozisyonu
+      const winningItemLeftPosition = actualWinningIndex * ITEM_WIDTH;
+      
+      // Winning item'ın merkezini bul (sol kenar + yarı genişlik)
+      const winningItemCenter = winningItemLeftPosition + (ITEM_WIDTH / 2);
+      
+      // Hedef: winning item'ın merkezi = container'ın merkezi
+      // x pozisyonu negative olmalı (sola kaydırıyoruz)
+      const targetPosition = centerOffset - winningItemCenter;
 
-      // Spin animation with easing
+      // Spin animation
       await controls.start({
         x: targetPosition,
         transition: {
           duration: 5,
-          ease: [0.22, 1, 0.36, 1], // Custom easing for smooth deceleration
+          ease: [0.22, 1, 0.36, 1],
         },
       });
 
       setIsSpinning(false);
       
-      // Delay before calling onComplete to show the result
       setTimeout(() => {
         onComplete();
       }, 1000);
     };
 
     spin();
-  }, [controls, items.length, onComplete]);
+  }, [controls, items, winningItem, onComplete]);
 
   return (
     <div className="relative w-full overflow-hidden bg-surface rounded-lg border-2 border-border">
@@ -69,23 +114,42 @@ export default function CaseRoulette({ items, onComplete, winningItem }: CaseRou
           animate={controls}
           initial={{ x: 0 }}
         >
-          {items.map((item, index) => (
-            <div
-              key={`${item.id}-${index}`}
-              className={`flex-shrink-0 w-40 h-48 bg-surface-light rounded-lg border-2 ${rarityBorderColors[item.rarity]} p-3 flex flex-col items-center justify-center`}
-            >
+          {items.map((item, index) => {
+            const glowColor = rarityHexColors[item.rarity];
+            const glowIntensity = rarityGlowIntensity[item.rarity];
+            
+            return (
               <div
-                className="w-24 h-24 bg-contain bg-center bg-no-repeat mb-2"
-                style={{ backgroundImage: `url(${item.imagePath})` }}
-              />
-              <div className={`text-xs font-bold uppercase ${rarityColors[item.rarity]} text-center`}>
-                {item.rarity}
+                key={`${item.id}-${index}`}
+                className={`flex-shrink-0 w-40 h-48 bg-surface-light rounded-lg border-2 ${rarityBorderColors[item.rarity]} p-3 flex flex-col items-center justify-center relative`}
+                style={{
+                  boxShadow: `0 0 ${10 * glowIntensity}px ${glowColor}${Math.floor(glowIntensity * 80).toString(16)}`
+                }}
+              >
+                {/* Glow background */}
+                <div 
+                  className="absolute inset-0 opacity-15 blur-lg rounded-lg"
+                  style={{
+                    background: `radial-gradient(circle at center, ${glowColor} 0%, transparent 70%)`
+                  }}
+                />
+                
+                <div
+                  className="w-24 h-24 bg-contain bg-center bg-no-repeat mb-2 relative z-10"
+                  style={{ 
+                    backgroundImage: `url(${item.imagePath})`,
+                    filter: `drop-shadow(0 0 ${6 * glowIntensity}px ${glowColor})`
+                  }}
+                />
+                <div className={`text-xs font-bold uppercase ${rarityColors[item.rarity]} text-center relative z-10`}>
+                  {getRarityLabel(item.rarity)}
+                </div>
+                <div className="text-sm font-semibold text-white text-center truncate w-full relative z-10">
+                  {item.name}
+                </div>
               </div>
-              <div className="text-sm font-semibold text-white text-center truncate w-full">
-                {item.name}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </div>

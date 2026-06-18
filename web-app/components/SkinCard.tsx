@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Skin } from '@/types';
-import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity';
+import { rarityBorderColors, rarityColors, getRarityLabel, rarityHexColors, rarityGlowIntensity } from '@/utils/rarity';
 import { formatZCoins } from '@/utils/format';
 import { getSkinPrice } from '@/utils/prices';
 
@@ -18,18 +18,34 @@ interface SkinCardProps {
 
 export default function SkinCard({ skin, action, showPrice = true }: SkinCardProps) {
   const price = getSkinPrice(skin.id);
+  const glowColor = rarityHexColors[skin.rarity];
+  const glowIntensity = rarityGlowIntensity[skin.rarity];
   
   return (
     <motion.div
-      className={`bg-surface-light rounded-lg border-2 ${rarityBorderColors[skin.rarity]} overflow-hidden hover:shadow-lg hover:shadow-${skin.rarity}/20 transition-all`}
+      className={`bg-surface-light rounded-lg border-2 ${rarityBorderColors[skin.rarity]} overflow-hidden hover:shadow-lg transition-all relative`}
+      style={{
+        boxShadow: `0 0 ${15 * glowIntensity}px ${glowColor}${Math.floor(glowIntensity * 100).toString(16)}`
+      }}
       whileHover={{ y: -5, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
+      {/* Glow effect background */}
+      <div 
+        className="absolute inset-0 opacity-20 blur-xl"
+        style={{
+          background: `radial-gradient(circle at center, ${glowColor} 0%, transparent 70%)`
+        }}
+      />
+      
       {/* Image */}
       <div className="relative aspect-square bg-gradient-to-br from-surface to-surface-light flex items-center justify-center p-4">
         <div
-          className="w-full h-full bg-contain bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${skin.imagePath})` }}
+          className="w-full h-full bg-contain bg-center bg-no-repeat relative z-10"
+          style={{ 
+            backgroundImage: `url(${skin.imagePath})`,
+            filter: `drop-shadow(0 0 ${8 * glowIntensity}px ${glowColor})`
+          }}
         />
         {/* Fallback if image doesn't exist */}
         <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-gray-600 -z-10">
@@ -38,7 +54,7 @@ export default function SkinCard({ skin, action, showPrice = true }: SkinCardPro
       </div>
 
       {/* Info */}
-      <div className="p-3">
+      <div className="p-3 relative z-10">
         <div className={`text-xs font-semibold uppercase ${rarityColors[skin.rarity]} mb-1`}>
           {getRarityLabel(skin.rarity)}
         </div>

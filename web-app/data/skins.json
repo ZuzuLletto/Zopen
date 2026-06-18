@@ -1,92 +1,92 @@
 [
   {
     "id": "skin-1",
-    "name": "Dragon Lore",
-    "rarity": "legendary",
+    "name": "Glock-18 Sand Dune",
+    "rarity": "white",
     "imagePath": "/assets/skins/skin1.png"
   },
   {
     "id": "skin-2",
     "name": "Asiimov",
-    "rarity": "epic",
+    "rarity": "red",
     "imagePath": "/assets/skins/skin2.png"
   },
   {
     "id": "skin-3",
     "name": "Redline",
-    "rarity": "rare",
+    "rarity": "pink",
     "imagePath": "/assets/skins/skin3.png"
   },
   {
     "id": "skin-4",
     "name": "Hypnotic",
-    "rarity": "uncommon",
+    "rarity": "purple",
     "imagePath": "/assets/skins/skin4.png"
   },
   {
     "id": "skin-5",
     "name": "Safari Mesh",
-    "rarity": "common",
+    "rarity": "darkblue",
     "imagePath": "/assets/skins/skin5.png"
   },
   {
     "id": "skin-6",
     "name": "Fade",
-    "rarity": "legendary",
+    "rarity": "gold",
     "imagePath": "/assets/skins/skin6.png"
   },
   {
     "id": "skin-7",
     "name": "Vulcan",
-    "rarity": "epic",
+    "rarity": "red",
     "imagePath": "/assets/skins/skin7.png"
   },
   {
     "id": "skin-8",
     "name": "Cyrex",
-    "rarity": "rare",
+    "rarity": "pink",
     "imagePath": "/assets/skins/skin8.png"
   },
   {
     "id": "skin-9",
     "name": "Blue Laminate",
-    "rarity": "uncommon",
+    "rarity": "purple",
     "imagePath": "/assets/skins/skin9.png"
   },
   {
     "id": "skin-10",
     "name": "Sand Dune",
-    "rarity": "common",
+    "rarity": "lightblue",
     "imagePath": "/assets/skins/skin10.png"
   },
   {
     "id": "skin-11",
     "name": "Medusa",
-    "rarity": "legendary",
+    "rarity": "gold",
     "imagePath": "/assets/skins/skin11.png"
   },
   {
     "id": "skin-12",
     "name": "Kill Confirmed",
-    "rarity": "epic",
+    "rarity": "red",
     "imagePath": "/assets/skins/skin12.png"
   },
   {
     "id": "skin-13",
     "name": "Bloodsport",
-    "rarity": "rare",
+    "rarity": "pink",
     "imagePath": "/assets/skins/skin13.png"
   },
   {
     "id": "skin-14",
     "name": "Blue Fissure",
-    "rarity": "uncommon",
+    "rarity": "darkblue",
     "imagePath": "/assets/skins/skin14.png"
   },
   {
     "id": "skin-15",
     "name": "Forest DDPAT",
-    "rarity": "common",
+    "rarity": "white",
     "imagePath": "/assets/skins/skin15.png"
   }
 ]

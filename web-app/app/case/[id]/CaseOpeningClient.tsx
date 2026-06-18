@@ -186,7 +186,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
                 className="absolute inset-0 rounded-lg"
                 animate={{
                   background: [
-                    `radial-gradient(circle at 50% 50%, ${wonSkin.rarity === 'legendary' ? 'rgba(245, 158, 11, 0.3)' : 'transparent'} 0%, transparent 70%)`,
+                    `radial-gradient(circle at 50% 50%, ${wonSkin.rarity === 'gold' ? 'rgba(255, 215, 0, 0.3)' : 'transparent'} 0%, transparent 70%)`,
                     `radial-gradient(circle at 50% 50%, transparent 0%, transparent 70%)`,
                   ],
                 }}

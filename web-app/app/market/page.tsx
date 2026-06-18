@@ -84,7 +84,7 @@ export default function MarketPage() {
     alert(`Sold ${skin.name} for ${formatZCoins(sellPrice)} Z-Coins!`);
   };
 
-  const rarities: (Rarity | 'all')[] = ['all', 'common', 'uncommon', 'rare', 'epic', 'legendary'];
+  const rarities: (Rarity | 'all')[] = ['all', 'white', 'lightblue', 'darkblue', 'purple', 'pink', 'red', 'gold'];
 
   return (
     <div className="max-w-7xl mx-auto">

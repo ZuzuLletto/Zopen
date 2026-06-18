@@ -1,4 +1,4 @@
-export type Rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+export type Rarity = 'white' | 'lightblue' | 'darkblue' | 'purple' | 'pink' | 'red' | 'gold';
 
 export interface Skin {
   id: string;

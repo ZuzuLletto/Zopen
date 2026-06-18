@@ -18,7 +18,7 @@ export const selectRandomSkin = (
   }
 
   if (!selectedRarity) {
-    selectedRarity = 'common';
+    selectedRarity = 'white'; // Fallback to most common rarity
   }
 
   // Filter skins by the selected rarity and those available in this case
@@ -46,10 +46,12 @@ export const generateRouletteItems = (
   count: number = 50
 ): Skin[] => {
   const items: Skin[] = [];
-  const winningIndex = Math.floor(count * 0.75); // Place winner at 75% position
+  // Winning item'ı TAM %75 pozisyonuna koy (37. index)
+  const winningIndex = Math.floor(count * 0.75);
 
   for (let i = 0; i < count; i++) {
     if (i === winningIndex) {
+      // TAM winning item'ı koy
       items.push(winningItem);
     } else {
       // Add random items from the case's possible drops
