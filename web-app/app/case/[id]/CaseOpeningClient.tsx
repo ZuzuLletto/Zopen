@@ -10,6 +10,7 @@ import { formatZCoins } from '@/utils/format';
 import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity';
 import skinsData from '@/data/skins.json';
 import { Skin, Rarity, Case } from '@/types';
+import { getCasePrice, getSkinPrice } from '@/utils/prices';
 
 interface CaseOpeningClientProps {
   caseData: Case;
@@ -17,6 +18,7 @@ interface CaseOpeningClientProps {
 
 export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) {
   const router = useRouter();
+  const casePrice = getCasePrice(caseData.id);
   
   const balance = useStore((state: any) => state.balance);
   const deductBalance = useStore((state: any) => state.deductBalance);
@@ -32,7 +34,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
   const handleOpenCase = () => {
     if (isOpening || showResult) return;
     
-    if (!deductBalance(caseData.price)) {
+    if (!deductBalance(casePrice)) {
       alert('Insufficient Z-Coins!');
       return;
     }
@@ -64,7 +66,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
     setRouletteItems([]);
   };
 
-  const canAfford = balance >= caseData.price;
+  const canAfford = balance >= casePrice;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -91,7 +93,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
               <span className="text-gray-400">Cost:</span>
               <div className="flex items-center space-x-2 text-primary text-2xl font-bold">
                 <span className="text-lg">Z</span>
-                <span>{formatZCoins(caseData.price)}</span>
+                <span>{formatZCoins(casePrice)}</span>
               </div>
             </div>
           </div>
@@ -135,11 +137,11 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
             whileHover={canAfford ? { scale: 1.05 } : {}}
             whileTap={canAfford ? { scale: 0.95 } : {}}
           >
-            {canAfford ? `Open Case (${formatZCoins(caseData.price)} Z-Coins)` : 'Insufficient Z-Coins'}
+            {canAfford ? `Open Case (${formatZCoins(casePrice)} Z-Coins)` : 'Insufficient Z-Coins'}
           </motion.button>
           {!canAfford && (
             <p className="text-red-400 mt-4">
-              You need {formatZCoins(caseData.price - balance)} more Z-Coins
+              You need {formatZCoins(casePrice - balance)} more Z-Coins
             </p>
           )}
         </motion.div>
@@ -208,7 +210,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
                     {wonSkin.name}
                   </h3>
                   <div className="text-center text-primary text-xl font-bold">
-                    <span className="text-sm">Z</span> {formatZCoins(wonSkin.price)}
+                    <span className="text-sm">Z</span> {formatZCoins(getSkinPrice(wonSkin.id))}
                   </div>
                 </div>
 

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Skin } from '@/types';
 import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity';
 import { formatZCoins } from '@/utils/format';
+import { getSkinPrice } from '@/utils/prices';
 
 interface SkinCardProps {
   skin: Skin;
@@ -16,6 +17,8 @@ interface SkinCardProps {
 }
 
 export default function SkinCard({ skin, action, showPrice = true }: SkinCardProps) {
+  const price = getSkinPrice(skin.id);
+  
   return (
     <motion.div
       className={`bg-surface-light rounded-lg border-2 ${rarityBorderColors[skin.rarity]} overflow-hidden hover:shadow-lg hover:shadow-${skin.rarity}/20 transition-all`}
@@ -45,7 +48,7 @@ export default function SkinCard({ skin, action, showPrice = true }: SkinCardPro
           <div className="flex items-center justify-between mb-2">
             <span className="text-primary font-bold flex items-center">
               <span className="text-xs mr-1">Z</span>
-              {formatZCoins(skin.price)}
+              {formatZCoins(price)}
             </span>
           </div>
         )}

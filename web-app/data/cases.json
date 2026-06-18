@@ -2,7 +2,6 @@
   {
     "id": "case-1",
     "name": "Starter Case",
-    "price": 100,
     "imagePath": "/assets/cases/starter.png",
     "dropRates": {
       "common": 70,
@@ -27,7 +26,6 @@
   {
     "id": "case-2",
     "name": "Premium Case",
-    "price": 250,
     "imagePath": "/assets/cases/premium.png",
     "dropRates": {
       "common": 60,
@@ -55,7 +53,6 @@
   {
     "id": "case-3",
     "name": "Elite Case",
-    "price": 500,
     "imagePath": "/assets/cases/elite.png",
     "dropRates": {
       "common": 50,

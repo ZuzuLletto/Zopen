@@ -4,17 +4,20 @@ export interface Skin {
   id: string;
   name: string;
   rarity: Rarity;
-  price: number;
   imagePath: string;
 }
 
 export interface Case {
   id: string;
   name: string;
-  price: number;
   imagePath: string;
   dropRates: Record<Rarity, number>;
   possibleDrops: string[];
+}
+
+export interface Prices {
+  skins: Record<string, number>;
+  cases: Record<string, number>;
 }
 
 export interface InventoryItem {

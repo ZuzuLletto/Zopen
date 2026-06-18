@@ -8,6 +8,7 @@ import { calculateSellPrice, formatZCoins } from '@/utils/format';
 import { rarityOrder } from '@/utils/rarity';
 import skinsData from '@/data/skins.json';
 import { Skin, Rarity } from '@/types';
+import { getSkinPrice } from '@/utils/prices';
 
 type SortOption = 'recent' | 'rarity-asc' | 'rarity-desc' | 'price-asc' | 'price-desc';
 
@@ -50,9 +51,9 @@ export default function InventoryPage() {
         case 'rarity-desc':
           return rarityOrder[b.skin!.rarity] - rarityOrder[a.skin!.rarity];
         case 'price-asc':
-          return a.skin!.price - b.skin!.price;
+          return getSkinPrice(a.skin!.id) - getSkinPrice(b.skin!.id);
         case 'price-desc':
-          return b.skin!.price - a.skin!.price;
+          return getSkinPrice(b.skin!.id) - getSkinPrice(a.skin!.id);
         default:
           return 0;
       }
@@ -63,11 +64,12 @@ export default function InventoryPage() {
 
   // Calculate total value
   const totalValue = useMemo(() => {
-    return displayedItems.reduce((sum, item) => sum + item.skin!.price, 0);
+    return displayedItems.reduce((sum, item) => sum + getSkinPrice(item.skin!.id), 0);
   }, [displayedItems]);
 
   const handleSell = (itemId: string, skin: Skin) => {
-    const sellPrice = calculateSellPrice(skin.price);
+    const price = getSkinPrice(skin.id);
+    const sellPrice = calculateSellPrice(price);
     removeFromInventory(itemId);
     addBalance(sellPrice);
     alert(`Sold ${skin.name} for ${formatZCoins(sellPrice)} Z-Coins!`);
@@ -192,7 +194,7 @@ export default function InventoryPage() {
               <SkinCard
                 skin={item.skin!}
                 action={{
-                  label: `Sell for ${formatZCoins(calculateSellPrice(item.skin!.price))} Z`,
+                  label: `Sell for ${formatZCoins(calculateSellPrice(getSkinPrice(item.skin!.id)))} Z`,
                   onClick: () => handleSell(item.id, item.skin!),
                 }}
               />

@@ -4,12 +4,15 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Case } from '@/types';
 import { formatZCoins } from '@/utils/format';
+import { getCasePrice } from '@/utils/prices';
 
 interface CaseCardProps {
   caseData: Case;
 }
 
 export default function CaseCard({ caseData }: CaseCardProps) {
+  const price = getCasePrice(caseData.id);
+  
   return (
     <Link href={`/case/${caseData.id}`}>
       <motion.div
@@ -45,7 +48,7 @@ export default function CaseCard({ caseData }: CaseCardProps) {
                 Z
               </div>
               <span className="text-primary font-bold text-lg">
-                {formatZCoins(caseData.price)}
+                {formatZCoins(price)}
               </span>
             </div>
             <motion.div

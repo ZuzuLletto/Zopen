@@ -8,6 +8,7 @@ import { calculateSellPrice, formatZCoins } from '@/utils/format';
 import { rarityOrder } from '@/utils/rarity';
 import skinsData from '@/data/skins.json';
 import { Skin, Rarity } from '@/types';
+import { getSkinPrice } from '@/utils/prices';
 
 type ViewMode = 'buy' | 'sell';
 type SortOption = 'rarity-asc' | 'rarity-desc' | 'price-asc' | 'price-desc';
@@ -51,9 +52,9 @@ export default function MarketPage() {
         case 'rarity-desc':
           return rarityOrder[b.rarity] - rarityOrder[a.rarity];
         case 'price-asc':
-          return a.price - b.price;
+          return getSkinPrice(a.id) - getSkinPrice(b.id);
         case 'price-desc':
-          return b.price - a.price;
+          return getSkinPrice(b.id) - getSkinPrice(a.id);
         default:
           return 0;
       }
@@ -63,7 +64,8 @@ export default function MarketPage() {
   }, [viewMode, allSkins, inventorySkins, filterRarity, sortBy]);
 
   const handleBuy = (skin: Skin) => {
-    if (deductBalance(skin.price)) {
+    const price = getSkinPrice(skin.id);
+    if (deductBalance(price)) {
       addToInventory(skin);
       alert(`Successfully purchased ${skin.name}!`);
     } else {
@@ -75,7 +77,8 @@ export default function MarketPage() {
     const inventoryItem = inventorySkins.find((item) => item.skin?.id === skin.id);
     if (!inventoryItem) return;
 
-    const sellPrice = calculateSellPrice(skin.price);
+    const price = getSkinPrice(skin.id);
+    const sellPrice = calculateSellPrice(price);
     removeFromInventory(inventoryItem.id);
     addBalance(sellPrice);
     alert(`Sold ${skin.name} for ${formatZCoins(sellPrice)} Z-Coins!`);
@@ -168,6 +171,7 @@ export default function MarketPage() {
             const inventoryItem = viewMode === 'sell' 
               ? inventorySkins.find((item) => item.skin?.id === skin.id)
               : null;
+            const price = getSkinPrice(skin.id);
 
             return (
               <motion.div
@@ -181,11 +185,11 @@ export default function MarketPage() {
                   action={{
                     label:
                       viewMode === 'buy'
-                        ? `Buy for ${formatZCoins(skin.price)} Z`
-                        : `Sell for ${formatZCoins(calculateSellPrice(skin.price))} Z`,
+                        ? `Buy for ${formatZCoins(price)} Z`
+                        : `Sell for ${formatZCoins(calculateSellPrice(price))} Z`,
                     onClick: () =>
                       viewMode === 'buy' ? handleBuy(skin) : handleSell(skin),
-                    disabled: viewMode === 'buy' && balance < skin.price,
+                    disabled: viewMode === 'buy' && balance < price,
                   }}
                 />
               </motion.div>
