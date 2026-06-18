@@ -10,16 +10,16 @@ import { formatZCoins } from '@/utils/format';
 import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity';
 import casesData from '@/data/cases.json';
 import skinsData from '@/data/skins.json';
-import { Skin } from '@/types';
+import { Skin, Rarity } from '@/types';
 
 export default function CaseOpeningPage() {
   const params = useParams();
   const router = useRouter();
   const caseId = params.id as string;
   
-  const balance = useStore((state) => state.balance);
-  const deductBalance = useStore((state) => state.deductBalance);
-  const addToInventory = useStore((state) => state.addToInventory);
+  const balance = useStore((state: any) => state.balance);
+  const deductBalance = useStore((state: any) => state.deductBalance);
+  const addToInventory = useStore((state: any) => state.addToInventory);
 
   const [isOpening, setIsOpening] = useState(false);
   const [wonSkin, setWonSkin] = useState<Skin | null>(null);
@@ -124,7 +124,7 @@ export default function CaseOpeningPage() {
           <div className="grid grid-cols-5 gap-3">
             {Object.entries(caseData.dropRates).map(([rarity, rate]) => (
               <div key={rarity} className="text-center">
-                <div className={`text-lg font-bold ${rarityColors[rarity as keyof typeof rarityColors]}`}>
+                <div className={`text-lg font-bold ${rarityColors[rarity as Rarity]}`}>
                   {rate}%
                 </div>
                 <div className="text-xs text-gray-400 uppercase">{rarity}</div>
@@ -190,11 +190,11 @@ export default function CaseOpeningPage() {
             onClick={handleOpenAnother}
           >
             <motion.div
-              className={`bg-surface-light rounded-lg p-8 max-w-md w-full mx-4 border-4 ${rarityBorderColors[wonSkin.rarity]} relative`}
+              className={`bg-surface-light rounded-lg p-8 max-w-md w-full mx-4 border-4 ${rarityBorderColors[wonSkin.rarity as Rarity]} relative`}
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: 'spring', duration: 0.5 }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
             >
               {/* Confetti effect */}
               <motion.div
@@ -218,8 +218,8 @@ export default function CaseOpeningPage() {
                     className="w-48 h-48 mx-auto bg-contain bg-center bg-no-repeat mb-4"
                     style={{ backgroundImage: `url(${wonSkin.imagePath})` }}
                   />
-                  <div className={`text-center text-sm font-bold uppercase ${rarityColors[wonSkin.rarity]} mb-2`}>
-                    {getRarityLabel(wonSkin.rarity)}
+                  <div className={`text-center text-sm font-bold uppercase ${rarityColors[wonSkin.rarity as Rarity]} mb-2`}>
+                    {getRarityLabel(wonSkin.rarity as Rarity)}
                   </div>
                   <h3 className="text-2xl font-bold text-center text-white mb-2">
                     {wonSkin.name}
