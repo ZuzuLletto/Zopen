@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import CaseRoulette from '@/components/CaseRoulette';
+import SkinImage from '@/components/SkinImage';
 import { useStore } from '@/store/useStore';
 import { selectRandomSkin, generateRouletteItems } from '@/utils/caseOpening';
 import { formatZCoins } from '@/utils/format';
@@ -27,6 +28,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
   const [isOpening, setIsOpening] = useState(false);
   const [wonSkin, setWonSkin] = useState<Skin | null>(null);
   const [rouletteItems, setRouletteItems] = useState<Skin[]>([]);
+  const [rouletteWinningIndex, setRouletteWinningIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
   const allSkins = useMemo(() => skinsData as Skin[], []);
@@ -47,8 +49,9 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
     }
 
     setWonSkin(selectedSkin);
-    const items = generateRouletteItems(selectedSkin, allSkins, caseData, 50);
+    const { items, winningIndex } = generateRouletteItems(selectedSkin, allSkins, caseData, 50);
     setRouletteItems(items);
+    setRouletteWinningIndex(winningIndex);
     setIsOpening(true);
   };
 
@@ -64,6 +67,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
     setShowResult(false);
     setWonSkin(null);
     setRouletteItems([]);
+    setRouletteWinningIndex(0);
   };
 
   const canAfford = balance >= casePrice;
@@ -157,7 +161,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
           >
             <CaseRoulette
               items={rouletteItems}
-              winningItem={wonSkin}
+              winningIndex={rouletteWinningIndex}
               onComplete={handleRouletteComplete}
             />
           </motion.div>
@@ -199,9 +203,11 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
                 </h2>
                 
                 <div className="bg-surface p-6 rounded-lg mb-6">
-                  <div
-                    className="w-48 h-48 mx-auto bg-contain bg-center bg-no-repeat mb-4"
-                    style={{ backgroundImage: `url(${wonSkin.imagePath})` }}
+                  <SkinImage
+                    src={wonSkin.imagePath}
+                    alt={wonSkin.name}
+                    fallbackText={wonSkin.name[0]}
+                    className="w-48 h-48 mx-auto mb-4"
                   />
                   <div className={`text-center text-sm font-bold uppercase ${rarityColors[wonSkin.rarity as Rarity]} mb-2`}>
                     {getRarityLabel(wonSkin.rarity as Rarity)}

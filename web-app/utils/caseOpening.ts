@@ -8,7 +8,6 @@ export const selectRandomSkin = (
   let cumulativeProbability = 0;
   let selectedRarity: Rarity | null = null;
 
-  // Determine rarity based on drop rates
   for (const [rarity, rate] of Object.entries(caseData.dropRates)) {
     cumulativeProbability += rate;
     if (random <= cumulativeProbability) {
@@ -18,10 +17,9 @@ export const selectRandomSkin = (
   }
 
   if (!selectedRarity) {
-    selectedRarity = 'white'; // Fallback to most common rarity
+    selectedRarity = 'white';
   }
 
-  // Filter skins by the selected rarity and those available in this case
   const possibleSkins = availableSkins.filter(
     (skin) =>
       skin.rarity === selectedRarity &&
@@ -29,7 +27,6 @@ export const selectRandomSkin = (
   );
 
   if (possibleSkins.length === 0) {
-    // Fallback to any skin in the case
     const fallbackSkins = availableSkins.filter((skin) =>
       caseData.possibleDrops.includes(skin.id)
     );
@@ -44,24 +41,21 @@ export const generateRouletteItems = (
   allSkins: Skin[],
   caseData: Case,
   count: number = 50
-): Skin[] => {
+): { items: Skin[]; winningIndex: number } => {
   const items: Skin[] = [];
-  // Winning item'ı TAM %75 pozisyonuna koy (37. index)
   const winningIndex = Math.floor(count * 0.75);
+  const caseSkins = allSkins.filter((skin) =>
+    caseData.possibleDrops.includes(skin.id)
+  );
 
   for (let i = 0; i < count; i++) {
     if (i === winningIndex) {
-      // TAM winning item'ı koy
       items.push(winningItem);
     } else {
-      // Add random items from the case's possible drops
-      const caseSkins = allSkins.filter((skin) =>
-        caseData.possibleDrops.includes(skin.id)
-      );
       const randomSkin = caseSkins[Math.floor(Math.random() * caseSkins.length)];
       items.push(randomSkin);
     }
   }
 
-  return items;
+  return { items, winningIndex };
 };

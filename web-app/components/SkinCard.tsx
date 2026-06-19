@@ -5,6 +5,7 @@ import { Skin } from '@/types';
 import { rarityBorderColors, rarityColors, getRarityLabel, rarityHexColors, rarityGlowIntensity } from '@/utils/rarity';
 import { formatZCoins } from '@/utils/format';
 import { getSkinPrice } from '@/utils/prices';
+import SkinImage from '@/components/SkinImage';
 
 interface SkinCardProps {
   skin: Skin;
@@ -40,17 +41,15 @@ export default function SkinCard({ skin, action, showPrice = true }: SkinCardPro
       
       {/* Image */}
       <div className="relative aspect-square bg-gradient-to-br from-surface to-surface-light flex items-center justify-center p-4">
-        <div
-          className="w-full h-full bg-contain bg-center bg-no-repeat relative z-10"
-          style={{ 
-            backgroundImage: `url(${skin.imagePath})`,
+        <SkinImage
+          src={skin.imagePath}
+          alt={skin.name}
+          fallbackText={skin.name[0]}
+          className="w-full h-full"
+          style={{
             filter: `drop-shadow(0 0 ${8 * glowIntensity}px ${glowColor})`
           }}
         />
-        {/* Fallback if image doesn't exist */}
-        <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-gray-600 -z-10">
-          {skin.name[0]}
-        </div>
       </div>
 
       {/* Info */}
