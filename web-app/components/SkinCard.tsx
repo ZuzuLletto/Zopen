@@ -9,6 +9,7 @@ import SkinImage from '@/components/SkinImage';
 
 interface SkinCardProps {
   skin: Skin;
+  floatValue?: number | null;
   action?: {
     label: string;
     onClick: () => void;
@@ -17,7 +18,7 @@ interface SkinCardProps {
   showPrice?: boolean;
 }
 
-export default function SkinCard({ skin, action, showPrice = true }: SkinCardProps) {
+export default function SkinCard({ skin, floatValue, action, showPrice = true }: SkinCardProps) {
   const price = getSkinPrice(skin.id);
   const glowColor = rarityHexColors[skin.rarity];
   const glowIntensity = rarityGlowIntensity[skin.rarity];
@@ -58,6 +59,11 @@ export default function SkinCard({ skin, action, showPrice = true }: SkinCardPro
           {getRarityLabel(skin.rarity)}
         </div>
         <h3 className="font-semibold text-white mb-2 truncate">{skin.name}</h3>
+        {typeof floatValue === 'number' && (
+          <div className="text-xs text-gray-400 mb-2">
+            Float: <span className="text-white font-mono">{floatValue.toFixed(4)}</span>
+          </div>
+        )}
         
         {showPrice && (
           <div className="flex items-center justify-between mb-2">

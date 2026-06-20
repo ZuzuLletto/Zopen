@@ -3,90 +3,165 @@
     "id": "skin-1",
     "name": "Glock-18 Sand Dune",
     "rarity": "white",
-    "imagePath": "/assets/skins/skin1.png"
+    "imagePath": "/assets/skins/skin1.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.06,
+      "max": 0.8
+    }
   },
   {
     "id": "skin-2",
     "name": "Asiimov",
     "rarity": "red",
-    "imagePath": "/assets/skins/skin2.png"
+    "imagePath": "/assets/skins/skin2.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.18,
+      "max": 1
+    }
   },
   {
     "id": "skin-3",
     "name": "Redline",
     "rarity": "pink",
-    "imagePath": "/assets/skins/skin3.png"
+    "imagePath": "/assets/skins/skin3.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.1,
+      "max": 0.7
+    }
   },
   {
     "id": "skin-4",
     "name": "Hypnotic",
     "rarity": "purple",
-    "imagePath": "/assets/skins/skin4.png"
+    "imagePath": "/assets/skins/skin4.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 0.08
+    }
   },
   {
     "id": "skin-5",
     "name": "Safari Mesh",
     "rarity": "darkblue",
-    "imagePath": "/assets/skins/skin5.png"
+    "imagePath": "/assets/skins/skin5.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.06,
+      "max": 0.8
+    }
   },
   {
     "id": "skin-6",
     "name": "Fade",
     "rarity": "gold",
-    "imagePath": "/assets/skins/skin6.png"
+    "imagePath": "/assets/skins/skin6.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 0.08
+    }
   },
   {
     "id": "skin-7",
     "name": "Vulcan",
     "rarity": "red",
-    "imagePath": "/assets/skins/skin7.png"
+    "imagePath": "/assets/skins/skin7.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 0.9
+    }
   },
   {
     "id": "skin-8",
     "name": "Cyrex",
     "rarity": "pink",
-    "imagePath": "/assets/skins/skin8.png"
+    "imagePath": "/assets/skins/skin8.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 0.5
+    }
   },
   {
     "id": "skin-9",
     "name": "Blue Laminate",
     "rarity": "purple",
-    "imagePath": "/assets/skins/skin9.png"
+    "imagePath": "/assets/skins/skin9.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.02,
+      "max": 0.4
+    }
   },
   {
     "id": "skin-10",
     "name": "Sand Dune",
     "rarity": "lightblue",
-    "imagePath": "/assets/skins/skin10.png"
+    "imagePath": "/assets/skins/skin10.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.06,
+      "max": 0.8
+    }
   },
   {
     "id": "skin-11",
     "name": "Medusa",
     "rarity": "gold",
-    "imagePath": "/assets/skins/skin11.png"
+    "imagePath": "/assets/skins/skin11.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 1
+    }
   },
   {
     "id": "skin-12",
     "name": "Kill Confirmed",
     "rarity": "red",
-    "imagePath": "/assets/skins/skin12.png"
+    "imagePath": "/assets/skins/skin12.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 1
+    }
   },
   {
     "id": "skin-13",
     "name": "Bloodsport",
     "rarity": "pink",
-    "imagePath": "/assets/skins/skin13.png"
+    "imagePath": "/assets/skins/skin13.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0,
+      "max": 0.45
+    }
   },
   {
     "id": "skin-14",
     "name": "Blue Fissure",
     "rarity": "darkblue",
-    "imagePath": "/assets/skins/skin14.png"
+    "imagePath": "/assets/skins/skin14.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.06,
+      "max": 0.58
+    }
   },
   {
     "id": "skin-15",
     "name": "Forest DDPAT",
     "rarity": "white",
-    "imagePath": "/assets/skins/skin15.png"
+    "imagePath": "/assets/skins/skin15.png",
+    "hasFloat": true,
+    "floatRange": {
+      "min": 0.06,
+      "max": 0.8
+    }
   }
 ]

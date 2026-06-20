@@ -193,6 +193,7 @@ export default function InventoryPage() {
             >
               <SkinCard
                 skin={item.skin!}
+                floatValue={item.floatValue}
                 action={{
                   label: `Sell for ${formatZCoins(calculateSellPrice(getSkinPrice(item.skin!.id)))} Z`,
                   onClick: () => handleSell(item.id, item.skin!),

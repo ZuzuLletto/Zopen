@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import { Skin, InventoryItem, UserData } from '@/types';
+import { generateSkinFloat } from '@/utils/float';
 
 interface StoreState extends UserData {
-  addToInventory: (skin: Skin) => void;
+  addToInventory: (skin: Skin, floatValue?: number | null) => void;
   removeFromInventory: (itemId: string) => void;
   addBalance: (amount: number) => void;
   deductBalance: (amount: number) => boolean;
@@ -17,11 +18,12 @@ export const useStore = create<StoreState>((set, get) => ({
   balance: INITIAL_BALANCE,
   inventory: [],
 
-  addToInventory: (skin: Skin) => {
+  addToInventory: (skin: Skin, floatValue?: number | null) => {
     const newItem: InventoryItem = {
       id: `inv-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       skinId: skin.id,
       acquiredAt: Date.now(),
+      floatValue: floatValue !== undefined ? floatValue : generateSkinFloat(skin),
     };
     
     set((state) => ({

@@ -5,6 +5,11 @@ export interface Skin {
   name: string;
   rarity: Rarity;
   imagePath: string;
+  hasFloat: boolean;
+  floatRange?: {
+    min: number;
+    max: number;
+  };
 }
 
 export interface Case {
@@ -24,6 +29,7 @@ export interface InventoryItem {
   id: string;
   skinId: string;
   acquiredAt: number;
+  floatValue?: number | null;
 }
 
 export interface UserData {

@@ -182,6 +182,7 @@ export default function MarketPage() {
               >
                 <SkinCard
                   skin={skin}
+                  floatValue={inventoryItem?.floatValue}
                   action={{
                     label:
                       viewMode === 'buy'

@@ -12,6 +12,7 @@ import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity
 import skinsData from '@/data/skins.json';
 import { Skin, Rarity, Case } from '@/types';
 import { getCasePrice, getSkinPrice } from '@/utils/prices';
+import { formatFloatValue, generateSkinFloat } from '@/utils/float';
 
 interface CaseOpeningClientProps {
   caseData: Case;
@@ -27,6 +28,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
 
   const [isOpening, setIsOpening] = useState(false);
   const [wonSkin, setWonSkin] = useState<Skin | null>(null);
+  const [wonFloat, setWonFloat] = useState<number | null>(null);
   const [rouletteItems, setRouletteItems] = useState<Skin[]>([]);
   const [rouletteWinningIndex, setRouletteWinningIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -49,6 +51,7 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
     }
 
     setWonSkin(selectedSkin);
+    setWonFloat(generateSkinFloat(selectedSkin));
     const { items, winningIndex } = generateRouletteItems(selectedSkin, allSkins, caseData, 50);
     setRouletteItems(items);
     setRouletteWinningIndex(winningIndex);
@@ -59,13 +62,14 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
     setIsOpening(false);
     setShowResult(true);
     if (wonSkin) {
-      addToInventory(wonSkin);
+      addToInventory(wonSkin, wonFloat);
     }
   };
 
   const handleOpenAnother = () => {
     setShowResult(false);
     setWonSkin(null);
+    setWonFloat(null);
     setRouletteItems([]);
     setRouletteWinningIndex(0);
   };
@@ -212,6 +216,11 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
                   <div className={`text-center text-sm font-bold uppercase ${rarityColors[wonSkin.rarity as Rarity]} mb-2`}>
                     {getRarityLabel(wonSkin.rarity as Rarity)}
                   </div>
+                  {formatFloatValue(wonFloat) && (
+                    <div className="text-center text-sm text-gray-400 mb-2">
+                      Float: <span className="text-white font-mono">{formatFloatValue(wonFloat)}</span>
+                    </div>
+                  )}
                   <h3 className="text-2xl font-bold text-center text-white mb-2">
                     {wonSkin.name}
                   </h3>
