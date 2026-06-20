@@ -1,87 +1,375 @@
 [
   {
     "id": "case-1",
-    "name": "Starter Case",
-    "imagePath": "/assets/cases/starter.png",
-    "dropRates": {
-      "white": 40,
-      "lightblue": 30,
-      "darkblue": 20,
-      "purple": 8,
-      "pink": 1.5,
-      "red": 0.4,
-      "gold": 0.1
-    },
+    "name": "Revolution Case",
+    "imagePath": "/assets/cases/case1.png",
     "possibleDrops": [
-      "skin-15",
-      "skin-10",
-      "skin-5",
-      "skin-14",
-      "skin-4",
-      "skin-9",
-      "skin-3",
-      "skin-8",
-      "skin-2",
-      "skin-1"
+      {
+        "skinId": "skin-2",
+        "chance": 0.13,
+        "floatRange": {
+          "min": 0.3,
+          "max": 0.5
+        }
+      },
+      {
+        "skinId": "skin-3",
+        "chance": 0.5,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-4",
+        "chance": 4.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-5",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.58
+        }
+      },
+      {
+        "skinId": "skin-6",
+        "chance": 0.05,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.08
+        }
+      },
+      {
+        "skinId": "skin-7",
+        "chance": 0.13,
+        "floatRange": {
+          "min": 0.02,
+          "max": 0.4
+        }
+      },
+      {
+        "skinId": "skin-8",
+        "chance": 0.5,
+        "floatRange": {
+          "min": 0.1,
+          "max": 0.7
+        }
+      },
+      {
+        "skinId": "skin-9",
+        "chance": 4.0,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.5
+        }
+      },
+      {
+        "skinId": "skin-10",
+        "chance": 30.0,
+        "floatRange": {
+          "min": 0.18,
+          "max": 1.0
+        }
+      },
+      {
+        "skinId": "skin-11",
+        "chance": 0.05,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-12",
+        "chance": 0.14,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-13",
+        "chance": 0.5,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-14",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-15",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-16",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-17",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-18",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      }
     ]
   },
   {
     "id": "case-2",
     "name": "Premium Case",
     "imagePath": "/assets/cases/premium.png",
-    "dropRates": {
-      "white": 30,
-      "lightblue": 25,
-      "darkblue": 22,
-      "purple": 15,
-      "pink": 5,
-      "red": 2.5,
-      "gold": 0.5
-    },
     "possibleDrops": [
-      "skin-10",
-      "skin-5",
-      "skin-14",
-      "skin-4",
-      "skin-9",
-      "skin-3",
-      "skin-8",
-      "skin-13",
-      "skin-2",
-      "skin-7",
-      "skin-12",
-      "skin-1",
-      "skin-6"
+      {
+        "skinId": "skin-10",
+        "chance": 25.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-5",
+        "chance": 11.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-14",
+        "chance": 11.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.58
+        }
+      },
+      {
+        "skinId": "skin-4",
+        "chance": 7.5,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.08
+        }
+      },
+      {
+        "skinId": "skin-9",
+        "chance": 7.5,
+        "floatRange": {
+          "min": 0.02,
+          "max": 0.4
+        }
+      },
+      {
+        "skinId": "skin-3",
+        "chance": 1.66,
+        "floatRange": {
+          "min": 0.1,
+          "max": 0.7
+        }
+      },
+      {
+        "skinId": "skin-8",
+        "chance": 1.67,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.5
+        }
+      },
+      {
+        "skinId": "skin-13",
+        "chance": 1.67,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.45
+        }
+      },
+      {
+        "skinId": "skin-2",
+        "chance": 0.83,
+        "floatRange": {
+          "min": 0.18,
+          "max": 1.0
+        }
+      },
+      {
+        "skinId": "skin-7",
+        "chance": 0.83,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.9
+        }
+      },
+      {
+        "skinId": "skin-12",
+        "chance": 0.84,
+        "floatRange": {
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      {
+        "skinId": "skin-1",
+        "chance": 30.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-6",
+        "chance": 0.5,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.08
+        }
+      }
     ]
   },
   {
     "id": "case-3",
     "name": "Elite Case",
     "imagePath": "/assets/cases/elite.png",
-    "dropRates": {
-      "white": 20,
-      "lightblue": 20,
-      "darkblue": 20,
-      "purple": 20,
-      "pink": 10,
-      "red": 8,
-      "gold": 2
-    },
     "possibleDrops": [
-      "skin-10",
-      "skin-15",
-      "skin-4",
-      "skin-9",
-      "skin-14",
-      "skin-3",
-      "skin-8",
-      "skin-13",
-      "skin-2",
-      "skin-7",
-      "skin-12",
-      "skin-1",
-      "skin-6",
-      "skin-11"
+      {
+        "skinId": "skin-10",
+        "chance": 20.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-15",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-4",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.08
+        }
+      },
+      {
+        "skinId": "skin-9",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.02,
+          "max": 0.4
+        }
+      },
+      {
+        "skinId": "skin-14",
+        "chance": 20.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.58
+        }
+      },
+      {
+        "skinId": "skin-3",
+        "chance": 3.33,
+        "floatRange": {
+          "min": 0.1,
+          "max": 0.7
+        }
+      },
+      {
+        "skinId": "skin-8",
+        "chance": 3.33,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.5
+        }
+      },
+      {
+        "skinId": "skin-13",
+        "chance": 3.34,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.45
+        }
+      },
+      {
+        "skinId": "skin-2",
+        "chance": 2.66,
+        "floatRange": {
+          "min": 0.18,
+          "max": 1.0
+        }
+      },
+      {
+        "skinId": "skin-7",
+        "chance": 2.67,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.9
+        }
+      },
+      {
+        "skinId": "skin-12",
+        "chance": 2.67,
+        "floatRange": {
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      {
+        "skinId": "skin-1",
+        "chance": 10.0,
+        "floatRange": {
+          "min": 0.06,
+          "max": 0.8
+        }
+      },
+      {
+        "skinId": "skin-6",
+        "chance": 1.0,
+        "floatRange": {
+          "min": 0.0,
+          "max": 0.08
+        }
+      },
+      {
+        "skinId": "skin-11",
+        "chance": 1.0,
+        "floatRange": {
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
     ]
   }
 ]

@@ -6,6 +6,7 @@ import { rarityBorderColors, rarityColors, getRarityLabel, rarityHexColors, rari
 import { formatZCoins } from '@/utils/format';
 import { getSkinPrice } from '@/utils/prices';
 import SkinImage from '@/components/SkinImage';
+import { getWearCondition } from '@/utils/float';
 
 interface SkinCardProps {
   skin: Skin;
@@ -59,11 +60,21 @@ export default function SkinCard({ skin, floatValue, action, showPrice = true }:
           {getRarityLabel(skin.rarity)}
         </div>
         <h3 className="font-semibold text-white mb-2 truncate">{skin.name}</h3>
-        {typeof floatValue === 'number' && (
-          <div className="text-xs text-gray-400 mb-2">
-            Float: <span className="text-white font-mono">{floatValue.toFixed(4)}</span>
-          </div>
-        )}
+        {typeof floatValue === 'number' && (() => {
+          const wear = getWearCondition(floatValue);
+          return (
+            <div className="text-xs text-gray-400 mb-2 flex items-center justify-between">
+              <span>
+                Float: <span className="text-white font-mono">{floatValue.toFixed(4)}</span>
+              </span>
+              {wear && (
+                <span className="text-[10px] font-semibold text-primary bg-surface px-1.5 py-0.5 rounded border border-border" title={wear.name}>
+                  {wear.label}
+                </span>
+              )}
+            </div>
+          );
+        })()}
         
         {showPrice && (
           <div className="flex items-center justify-between mb-2">

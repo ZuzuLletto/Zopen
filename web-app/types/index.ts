@@ -6,6 +6,11 @@ export interface Skin {
   rarity: Rarity;
   imagePath: string;
   hasFloat: boolean;
+}
+
+export interface CaseDrop {
+  skinId: string;
+  chance: number;
   floatRange?: {
     min: number;
     max: number;
@@ -16,8 +21,7 @@ export interface Case {
   id: string;
   name: string;
   imagePath: string;
-  dropRates: Record<Rarity, number>;
-  possibleDrops: string[];
+  possibleDrops: CaseDrop[];
 }
 
 export interface Prices {

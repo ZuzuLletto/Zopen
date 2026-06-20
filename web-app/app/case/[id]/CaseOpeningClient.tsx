@@ -12,7 +12,7 @@ import { rarityBorderColors, rarityColors, getRarityLabel } from '@/utils/rarity
 import skinsData from '@/data/skins.json';
 import { Skin, Rarity, Case } from '@/types';
 import { getCasePrice, getSkinPrice } from '@/utils/prices';
-import { formatFloatValue, generateSkinFloat } from '@/utils/float';
+import { formatFloatValue, generateSkinFloat, getWearCondition } from '@/utils/float';
 
 interface CaseOpeningClientProps {
   caseData: Case;
@@ -35,6 +35,35 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
 
   const allSkins = useMemo(() => skinsData as Skin[], []);
 
+  const computedDropRates = useMemo(() => {
+    const rates: Record<Rarity, number> = {
+      white: 0,
+      lightblue: 0,
+      darkblue: 0,
+      purple: 0,
+      pink: 0,
+      red: 0,
+      gold: 0,
+    };
+    
+    let totalChance = 0;
+    for (const drop of caseData.possibleDrops) {
+      const skin = allSkins.find((s) => s.id === drop.skinId);
+      if (skin) {
+        rates[skin.rarity] += drop.chance;
+        totalChance += drop.chance;
+      }
+    }
+    
+    if (totalChance > 0) {
+      for (const rarity of Object.keys(rates) as Rarity[]) {
+        rates[rarity] = parseFloat(((rates[rarity] / totalChance) * 100).toFixed(2));
+      }
+    }
+    
+    return rates;
+  }, [caseData, allSkins]);
+
   const handleOpenCase = () => {
     if (isOpening || showResult) return;
     
@@ -50,8 +79,11 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
       return;
     }
 
+    const dropConfig = caseData.possibleDrops.find(d => d.skinId === selectedSkin.id);
+    const floatRange = dropConfig?.floatRange;
+
     setWonSkin(selectedSkin);
-    setWonFloat(generateSkinFloat(selectedSkin));
+    setWonFloat(generateSkinFloat(selectedSkin, floatRange));
     const { items, winningIndex } = generateRouletteItems(selectedSkin, allSkins, caseData, 50);
     setRouletteItems(items);
     setRouletteWinningIndex(winningIndex);
@@ -114,15 +146,17 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
         {/* Drop Rates */}
         <div className="bg-surface p-4 rounded-lg">
           <h3 className="text-sm font-semibold text-gray-400 uppercase mb-3">Drop Rates</h3>
-          <div className="grid grid-cols-5 gap-3">
-            {Object.entries(caseData.dropRates).map(([rarity, rate]) => (
-              <div key={rarity} className="text-center">
-                <div className={`text-lg font-bold ${rarityColors[rarity as Rarity]}`}>
-                  {rate}%
+          <div className="flex flex-wrap justify-between gap-4">
+            {Object.entries(computedDropRates)
+              .filter(([_, rate]) => rate > 0)
+              .map(([rarity, rate]) => (
+                <div key={rarity} className="text-center min-w-[80px] flex-1">
+                  <div className={`text-lg font-bold ${rarityColors[rarity as Rarity]}`}>
+                    {rate}%
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase">{rarity}</div>
                 </div>
-                <div className="text-xs text-gray-400 uppercase">{rarity}</div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </motion.div>
@@ -191,14 +225,12 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
             >
               {/* Confetti effect */}
               <motion.div
-                className="absolute inset-0 rounded-lg"
-                animate={{
-                  background: [
-                    `radial-gradient(circle at 50% 50%, ${wonSkin.rarity === 'gold' ? 'rgba(255, 215, 0, 0.3)' : 'transparent'} 0%, transparent 70%)`,
-                    `radial-gradient(circle at 50% 50%, transparent 0%, transparent 70%)`,
-                  ],
+                className="absolute inset-0 rounded-lg animate-pulse-glow"
+                style={{
+                  background: `radial-gradient(circle at center, ${
+                    wonSkin.rarity === 'gold' ? 'rgba(255, 215, 0, 0.15)' : 'transparent'
+                  } 0%, transparent 70%)`
                 }}
-                transition={{ duration: 1, repeat: Infinity }}
               />
 
               <div className="relative z-10">
@@ -216,11 +248,24 @@ export default function CaseOpeningClient({ caseData }: CaseOpeningClientProps) 
                   <div className={`text-center text-sm font-bold uppercase ${rarityColors[wonSkin.rarity as Rarity]} mb-2`}>
                     {getRarityLabel(wonSkin.rarity as Rarity)}
                   </div>
-                  {formatFloatValue(wonFloat) && (
-                    <div className="text-center text-sm text-gray-400 mb-2">
-                      Float: <span className="text-white font-mono">{formatFloatValue(wonFloat)}</span>
-                    </div>
-                  )}
+                  {formatFloatValue(wonFloat) && (() => {
+                    const wear = getWearCondition(wonFloat);
+                    return (
+                      <div className="text-center text-sm text-gray-400 mb-2">
+                        Float: <span className="text-white font-mono">{formatFloatValue(wonFloat)}</span>
+                        {wear && (
+                          <span className="ml-2 text-xs font-semibold text-primary bg-surface-light px-2 py-0.5 rounded border border-border">
+                            {wear.label}
+                          </span>
+                        )}
+                        {wear && (
+                          <span className="block text-xs text-gray-500 mt-1">
+                            {wear.name}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })()}
                   <h3 className="text-2xl font-bold text-center text-white mb-2">
                     {wonSkin.name}
                   </h3>

@@ -4,36 +4,26 @@ export const selectRandomSkin = (
   caseData: Case,
   availableSkins: Skin[]
 ): Skin | null => {
-  const random = Math.random() * 100;
-  let cumulativeProbability = 0;
-  let selectedRarity: Rarity | null = null;
+  const totalChance = caseData.possibleDrops.reduce((sum, drop) => sum + drop.chance, 0);
+  if (totalChance <= 0) return null;
 
-  for (const [rarity, rate] of Object.entries(caseData.dropRates)) {
-    cumulativeProbability += rate;
-    if (random <= cumulativeProbability) {
-      selectedRarity = rarity as Rarity;
+  const roll = Math.random() * totalChance;
+  let cumulativeChance = 0;
+  let selectedDropId: string | null = null;
+
+  for (const drop of caseData.possibleDrops) {
+    cumulativeChance += drop.chance;
+    if (roll <= cumulativeChance) {
+      selectedDropId = drop.skinId;
       break;
     }
   }
 
-  if (!selectedRarity) {
-    selectedRarity = 'white';
+  if (!selectedDropId && caseData.possibleDrops.length > 0) {
+    selectedDropId = caseData.possibleDrops[caseData.possibleDrops.length - 1].skinId;
   }
 
-  const possibleSkins = availableSkins.filter(
-    (skin) =>
-      skin.rarity === selectedRarity &&
-      caseData.possibleDrops.includes(skin.id)
-  );
-
-  if (possibleSkins.length === 0) {
-    const fallbackSkins = availableSkins.filter((skin) =>
-      caseData.possibleDrops.includes(skin.id)
-    );
-    return fallbackSkins[Math.floor(Math.random() * fallbackSkins.length)] || null;
-  }
-
-  return possibleSkins[Math.floor(Math.random() * possibleSkins.length)];
+  return availableSkins.find((skin) => skin.id === selectedDropId) || null;
 };
 
 export const generateRouletteItems = (
@@ -45,7 +35,7 @@ export const generateRouletteItems = (
   const items: Skin[] = [];
   const winningIndex = Math.floor(count * 0.75);
   const caseSkins = allSkins.filter((skin) =>
-    caseData.possibleDrops.includes(skin.id)
+    caseData.possibleDrops.some((drop) => drop.skinId === skin.id)
   );
 
   for (let i = 0; i < count; i++) {

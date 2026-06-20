@@ -1,167 +1,128 @@
 [
   {
     "id": "skin-1",
-    "name": "Glock-18 Sand Dune",
+    "name": "Glock-18 | Sand Dune",
     "rarity": "white",
     "imagePath": "/assets/skins/skin1.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.06,
-      "max": 0.8
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-2",
-    "name": "Asiimov",
+    "name": "SG 553 | Cyberforce",
     "rarity": "red",
     "imagePath": "/assets/skins/skin2.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.18,
-      "max": 1
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-3",
-    "name": "Redline",
+    "name": "SCAR-20 | Fragments",
     "rarity": "pink",
     "imagePath": "/assets/skins/skin3.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.1,
-      "max": 0.7
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-4",
-    "name": "Hypnotic",
+    "name": "P250 | Re.built",
     "rarity": "purple",
     "imagePath": "/assets/skins/skin4.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 0.08
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-5",
-    "name": "Safari Mesh",
+    "name": "MP9 | Featherweight",
     "rarity": "darkblue",
     "imagePath": "/assets/skins/skin5.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.06,
-      "max": 0.8
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-6",
-    "name": "Fade",
+    "name": "Tec-9 | Rebel",
     "rarity": "gold",
     "imagePath": "/assets/skins/skin6.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 0.08
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-7",
-    "name": "Vulcan",
+    "name": "MAG-7 | Insomnia",
     "rarity": "red",
     "imagePath": "/assets/skins/skin7.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 0.9
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-8",
-    "name": "Cyrex",
+    "name": "MP5-SD | Liquidation",
     "rarity": "pink",
     "imagePath": "/assets/skins/skin8.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 0.5
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-9",
-    "name": "Blue Laminate",
+    "name": "R8 Revolver | Banana Cannon",
     "rarity": "purple",
     "imagePath": "/assets/skins/skin9.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.02,
-      "max": 0.4
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-10",
-    "name": "Sand Dune",
+    "name": "M4A1-S | Emphorosaur-S",
     "rarity": "lightblue",
     "imagePath": "/assets/skins/skin10.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.06,
-      "max": 0.8
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-11",
-    "name": "Medusa",
+    "name": "P90 | Neoqueen",
     "rarity": "gold",
     "imagePath": "/assets/skins/skin11.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 1
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-12",
-    "name": "Kill Confirmed",
+    "name": "MAC-10 | Sakkaku",
     "rarity": "red",
     "imagePath": "/assets/skins/skin12.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 1
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-13",
-    "name": "Bloodsport",
+    "name": "Glock-18 | Umbral Rabbit",
     "rarity": "pink",
     "imagePath": "/assets/skins/skin13.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0,
-      "max": 0.45
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-14",
-    "name": "Blue Fissure",
+    "name": "P2000 | Wicked Sick",
     "rarity": "darkblue",
     "imagePath": "/assets/skins/skin14.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.06,
-      "max": 0.58
-    }
+    "hasFloat": true
   },
   {
     "id": "skin-15",
-    "name": "Forest DDPAT",
+    "name": "UMP-45 | Wild Child",
     "rarity": "white",
     "imagePath": "/assets/skins/skin15.png",
-    "hasFloat": true,
-    "floatRange": {
-      "min": 0.06,
-      "max": 0.8
-    }
+    "hasFloat": true
+  },
+  {
+    "id": "skin-16",
+    "name": "AWP | Duality",
+    "rarity": "white",
+    "imagePath": "/assets/skins/skin15.png",
+    "hasFloat": true
+  },
+  {
+    "id": "skin-17",
+    "name": "M4A4 | Temukau",
+    "rarity": "white",
+    "imagePath": "/assets/skins/skin15.png",
+    "hasFloat": true
+  },
+  {
+    "id": "skin-18",
+    "name": "AK-47 | Head Shot",
+    "rarity": "white",
+    "imagePath": "/assets/skins/skin15.png",
+    "hasFloat": true
   }
 ]
